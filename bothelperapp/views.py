@@ -16,7 +16,7 @@ def index(request):
     return HttpResponse("Hello World. I'm line bot.")
 
 def invoice():
-    url = "https://invoice.etax.nat.gov.tw"
+    url = "https://invoice.etax.nat.gov.tw/index.html"
 
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
