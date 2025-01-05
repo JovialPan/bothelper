@@ -68,7 +68,7 @@ def wzu():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    main = soup.find_all('a',role="heading")
+    main = soup.find(role="heading")
     rts = main.text +"\n"
 
 
