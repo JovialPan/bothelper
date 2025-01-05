@@ -58,8 +58,8 @@ def news():
 
     return rts
 
-def banks():
-    url = "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+def wzu():
+    url = "https://a001.wzu.edu.tw/category/153640"
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
     html = requests.get(url, headers=headers)
@@ -68,8 +68,9 @@ def banks():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    kuni = soup.find_all('td',class_="currency phone-small-font")
-    rts = kuni + "\n"
+    main = soup.find_all('a',role="heading")
+    rts = main.text +"\n"
+
 
     return rts
 
@@ -134,8 +135,8 @@ def callback(request):
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
                 
-                elif txtmsg == "銀行匯率":
-                    replymsg = banks()
+                elif txtmsg == "文藻頭條新聞":
+                    replymsg = wzu()
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
