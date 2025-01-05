@@ -16,7 +16,7 @@ def index(request):
     return HttpResponse("Hello World. I'm line bot.")
 
 def invoice():
-    url = "https://invoices.com.tw/0910.html"
+    url = "https://invoice.etax.nat.gov.tw"
 
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
@@ -26,16 +26,17 @@ def invoice():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    pp = soup.find_all('h2',class_="button")
+    pp = soup.find_all('a',class_='etw-on')
+
     rts = "開獎期別:" + pp[0].text + "\n"
     
-    nn = soup.find_all('td',class_="number")
+    nn = soup.find_all('p',class_="etw-tbiggest")
     rts += "特別獎:" + nn[0].text + "\n"
     rts += "特獎:" + nn[1].text + "\n"
     rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
 
     return rts
-
+    
 def news():
     url = "https://www.cna.com.tw/list/aall.aspx"
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
@@ -54,6 +55,11 @@ def news():
         rts += i.find('h2').text+'\n'
         rts += 'https://www.cna.com.tw/' + i.find('a')['href']
         rts += '\n\n'
+
+    return rts
+
+def banks():
+
 
     return rts
 
