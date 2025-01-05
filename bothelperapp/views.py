@@ -68,9 +68,13 @@ def wzu():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    main = soup.find(role="heading")
-    rts = main.text +"\n"
-
+    main = soup.find(class_="news-list")
+    rts = ""
+     
+    for i in main.find_all('li')[:3]:
+        rts += i.find(role="heading")text +"\n"
+        rts += "https://a001.wzu.edu.tw/article/" + i.find('a')['href']
+        rts += '\n'
 
     return rts
 
