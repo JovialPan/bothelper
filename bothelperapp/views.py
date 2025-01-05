@@ -21,7 +21,7 @@ def invoice():
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
     html = requests.get(url, headers=headers)
-    html.encoding ='uft-8'
+    html.encoding ='utf-8'
 
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
@@ -72,10 +72,10 @@ def banks():
         currency_name = row.select_one("div.hidden-phone.print_show").text.strip() 
         cash_buy = row.select_one("td[data-table='本行現金買入']").text.strip()  
         cash_sell = row.select_one("td[data-table='本行現金賣出']").text.strip()  
-        rts +=(f"{i}.  {currency_name}") + "\n"
-        rts +=(f"   現金買入: {cash_buy}")+ "\n"
-        rts +=(f"   現金賣出: {cash_sell}")
-        rts += "\n\n"
+        rts +=(f"{currency_name}") + "\n"
+        rts +=(f"現金買入匯率: {cash_buy}")+ "\n"
+        rts +=(f"現金賣出匯率: {cash_sell}")
+        rts += "\n"
 
     return rts
 
