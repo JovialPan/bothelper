@@ -67,14 +67,15 @@ def banks():
     soup = BeautifulSoup(html.text, 'html.parser')
 
     rows = soup.select("table.table tbody tr")[:3]  
-
+    rts = ""
     for i, row in enumerate(rows, start=1):
         currency_name = row.select_one("div.hidden-phone.print_show").text.strip() 
         cash_buy = row.select_one("td[data-table='本行現金買入']").text.strip()  
         cash_sell = row.select_one("td[data-table='本行現金賣出']").text.strip()  
-        rts =(f"{i}.  {currency_name}")
-        rts +=(f"   現金買入: {cash_buy}")
+        rts +=(f"{i}.  {currency_name}") + "\n"
+        rts +=(f"   現金買入: {cash_buy}")+ "\n"
         rts +=(f"   現金賣出: {cash_sell}")
+        rts += "\n\n"
 
     return rts
 
