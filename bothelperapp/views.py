@@ -68,10 +68,12 @@ def wzu():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    wzunw = soup.find_all("div", style="font-weight:bold")
-    for i, news in enumerate(wzunw[:3], start=1):
-    title = news.text.strip()  
-    rts = (f"{i}.  {title}")
+   news = soup.find_all("div", style="font-weight:bold")  
+
+
+    for i, news in enumerate(news[:3], start=1):
+        title = news.text.strip() 
+        rts = (f"{i}.  {title}")
   
 
     return rts
