@@ -16,7 +16,7 @@ def index(request):
     return HttpResponse("Hello World. I'm line bot.")
 
 def invoice():
-    url = "https://www.etax.nat.gov.tw/etw-main/ETW183W2_11309/"
+    url = "https://invoices.com.tw/0910.html"
 
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
@@ -26,11 +26,10 @@ def invoice():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    pp = soup.find_all('td',style="color : rgb(135 133 133);font-weight:bold;font-size:1.5em;text-align: center;")
-
+    pp = soup.find_all('h2',class_="button")
     rts = "開獎期別:" + pp[0].text + "\n"
     
-    nn = soup.find_all('th',class_="col-12 mb-3")
+    nn = soup.find_all('td',class_="number")
     rts += "特別獎:" + nn[0].text + "\n"
     rts += "特獎:" + nn[1].text + "\n"
     rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
