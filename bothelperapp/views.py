@@ -75,7 +75,7 @@ def banks():
         rts +=(f"{currency_name}") + "\n"
         rts +=(f"現金買入匯率: {cash_buy}")+ "\n"
         rts +=(f"現金賣出匯率: {cash_sell}")
-        rts += "\n"
+        rts += "\n\n"
 
     return rts
 
