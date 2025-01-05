@@ -58,23 +58,20 @@ def news():
 
     return rts
 
-# def banks():
-#     url = "https://rate.bot.com.tw/xrt?Lang=zh-TW"
-#     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
-#     headers = {'User-Agent': user_agent}
-#     html = requests.get(url, headers=headers)
-#     html.encoding ='uft-8'
+def banks():
+    url = "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
+    headers = {'User-Agent': user_agent}
+    html = requests.get(url, headers=headers)
+    html.encoding ='uft-8'
 
-#     soup = BeautifulSoup(html.text, 'html.parser')
-#     soup.encoding = 'utf-8'
+    soup = BeautifulSoup(html.text, 'html.parser')
+    soup.encoding = 'utf-8'
 
-#     kuni = soup.find_all('td',class_="currency phone-small-font")
-#     rts = kuni + "\n"
+    kuni = soup.find_all('td',class_="currency phone-small-font")
+    rts = kuni + "\n"
 
-
-#     rts += 
-
-#     return rts
+    return rts
 
 
 @csrf_exempt
@@ -136,6 +133,12 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
+                
+                elif txtmsg == "銀行匯率":
+                    replymsg = banks()
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        TextSendMessage( text = replymsg ))
 
                 else:
                     currentDateAndTime = datetime.now()
@@ -147,8 +150,6 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
-
-                # 回傳收到的文字訊息
 
         return HttpResponse()
     else:
