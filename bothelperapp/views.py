@@ -58,23 +58,23 @@ def news():
 
     return rts
 
-def wzu():
-    url = "https://a001.wzu.edu.tw/category/153640"
+def banks():
+    url = "https://rate.bot.com.tw/xrt?Lang=zh-TW"
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
     html = requests.get(url, headers=headers)
-    html.encoding ='uft-8'
-
+    html.encoding = 'utf-8'
     soup = BeautifulSoup(html.text, 'html.parser')
-    soup.encoding = 'utf-8'
 
-   news = soup.find_all("div", style="font-weight:bold")  
+    rows = soup.select("table.table tbody tr")[:3]  
 
-
-    for i, news in enumerate(news[:3], start=1):
-        title = news.text.strip() 
-        rts = (f"{i}.  {title}")
-  
+    for i, row in enumerate(rows, start=1):
+        currency_name = row.select_one("div.hidden-phone.print_show").text.strip() 
+        cash_buy = row.select_one("td[data-table='本行現金買入']").text.strip()  
+        cash_sell = row.select_one("td[data-table='本行現金賣出']").text.strip()  
+        rts =(f"{i}.  {currency_name}")
+        rts +=(f"   現金買入: {cash_buy}")
+        rts +=(f"   現金賣出: {cash_sell}")
 
     return rts
 
@@ -139,8 +139,8 @@ def callback(request):
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
                 
-                elif txtmsg == "文藻頭條新聞":
-                    replymsg = wzu()
+                elif txtmsg == "匯率":
+                    replymsg = banks()
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage( text = replymsg ))
