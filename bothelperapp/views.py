@@ -73,8 +73,6 @@ def wzu():
      
     for i in main.find_all('li')[:3]:
         rts += i.find(role="heading")text +"\n"
-        rts += "https://a001.wzu.edu.tw/article/" + i.find('a')['href']
-        rts += '\n'
 
     return rts
 
