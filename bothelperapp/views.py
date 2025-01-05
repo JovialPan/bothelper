@@ -17,13 +17,9 @@ def index(request):
 
 def invoice():
     url = "https://invoice.etax.nat.gov.tw/index.html"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Referer": "https://invoice.etax.nat.gov.tw/",
-    "Connection": "keep-alive",
-    "Upgrade-Insecure-Requests": "1",}
+
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
+    headers = {'User-Agent': user_agent}
     html = requests.get(url, headers=headers)
     html.encoding ='uft-8'
 
@@ -75,7 +71,7 @@ def banks():
     kuni = soup.find_all('td',class_="currency phone-small-font")
     rts = kuni + "\n"
 
-    
+
     rts += 
 
     return rts
