@@ -66,7 +66,7 @@ def banks():
     html.encoding = 'utf-8'
     soup = BeautifulSoup(html.text, 'html.parser')
 
-    rows = soup.select("table.table tbody tr")[:3]  
+    rows = soup.select("table.table tbody tr")[:10]  
     rts = ""
     for i, row in enumerate(rows, start=1):
         currency_name = row.select_one("div.hidden-phone.print_show").text.strip() 
