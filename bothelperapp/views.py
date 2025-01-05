@@ -16,7 +16,7 @@ def index(request):
     return HttpResponse("Hello World. I'm line bot.")
 
 def invoice():
-    url = "https://invoice.etax.nat.gov.tw"
+    url = "https://www.etax.nat.gov.tw/etw-main/ETW183W2_11309/"
 
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
     headers = {'User-Agent': user_agent}
@@ -26,11 +26,11 @@ def invoice():
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
 
-    pp = soup.find_all('a',class_='etw-on')
+    pp = soup.find_all('td',style="color : rgb(135 133 133);font-weight:bold;font-size:1.5em;text-align: center;")
 
     rts = "開獎期別:" + pp[0].text + "\n"
     
-    nn = soup.find_all('p',class_="etw-tbiggest")
+    nn = soup.find_all('th',class_="col-12 mb-3")
     rts += "特別獎:" + nn[0].text + "\n"
     rts += "特獎:" + nn[1].text + "\n"
     rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
@@ -99,7 +99,6 @@ def callback(request):
                         TextSendMessage( text = replymsg ))
 
                 elif txtmsg in ["龍山寺求籤","求籤","龍山寺拜拜"]:
-
                     num = random.choice(range(1,101))
                     imgurl = f"https://www.lungshan.org.tw/fortune_sticks/images/{num:0>3d}.jpg"
 
