@@ -25,7 +25,6 @@ def invoice():
 
     soup = BeautifulSoup(html.text, 'html.parser')
     soup.encoding = 'utf-8'
-    sp = soup.prettify()
     # pp = soup.find_all('a',class_='etw-on')
 
     # rts = "開獎期別:" + pp[0].text + "\n"
@@ -36,7 +35,7 @@ def invoice():
     # rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
     
 
-    rts = sp
+    rts = soup.prettify()
 
     return rts
     
