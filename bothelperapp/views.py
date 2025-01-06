@@ -29,8 +29,8 @@ def invoice():
  
     pp = soup.find_all('a',class_='etw-on')
  
-    rts = "開獎期別:" + pp[0].text + "\n"
-    
+    # rts = "開獎期別:" + pp[0].text + "\n"
+
     # 
     # nn = soup.find_all('p',class_="etw-tbiggest")
     # rts += "特別獎:" + nn[0].text + "\n"
