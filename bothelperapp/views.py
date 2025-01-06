@@ -17,15 +17,15 @@ def index(request):
     return HttpResponse("Hello World. I'm line bot.")
 
 def invoice():
-    # url = "https://invoice.etax.nat.gov.tw"
+    url = "https://invoice.etax.nat.gov.tw"
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
-    # headers = {'User-Agent': user_agent}
-    # html = requests.get(url, headers=headers)
-    # html.encoding ='utf-8'
+    headers = {'User-Agent': user_agent}
+    html = requests.get(url, headers=headers)
+    html.encoding ='utf-8'
 
-    # soup = BeautifulSoup(html.text, 'html.parser')
-    # soup.encoding = 'utf-8'
-
+    soup = BeautifulSoup(html.text, 'html.parser')
+    soup.encoding = 'utf-8'
+    sp = soup.prettify()
     # pp = soup.find_all('a',class_='etw-on')
 
     # rts = "開獎期別:" + pp[0].text + "\n"
@@ -36,7 +36,7 @@ def invoice():
     # rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
     
 
-    rts = user_agent
+    rts = sp
 
     return rts
     
