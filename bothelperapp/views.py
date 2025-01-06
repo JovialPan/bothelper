@@ -66,7 +66,7 @@ def banks():
     html.encoding = 'utf-8'
     soup = BeautifulSoup(html.text, 'html.parser')
 
-    rows = soup.select("table.table tbody tr")[:10]  
+    rows = soup.select("table.table tbody tr")[:8]  
     rts = ""
     for i, row in enumerate(rows, start=1):
         currency_name = row.select_one("div.hidden-phone.print_show").text.strip() 
@@ -76,7 +76,6 @@ def banks():
         rts +=(f"現金買入匯率: {cash_buy}")+ "\n"
         rts +=(f"現金賣出匯率: {cash_sell}")
         rts += "\n\n"
-
     return rts
 
 
