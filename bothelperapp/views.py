@@ -7,6 +7,7 @@ from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, LocationSendMessage
 from datetime import datetime
 import random
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -31,7 +32,6 @@ def invoice():
     rts = "開獎期別:" + pp[0].text + "\n"
     
     nn = soup.find_all('p',class_="etw-tbiggest")
-    
     rts += "特別獎:" + nn[0].text + "\n"
     rts += "特獎:" + nn[1].text + "\n"
     rts += "頭獎:" + nn[2].text.strip() +", " + nn[3].text.strip() +", " + nn[4].text.strip()
