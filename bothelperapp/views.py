@@ -19,13 +19,13 @@ def index(request):
 def invoice():
     url = "https://invoice.etax.nat.gov.tw"
 
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
-    headers = {'User-Agent': user_agent}
-    html = requests.get(url, headers=headers)
-    html.encoding ='utf-8'
+    # user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36"
+    # headers = {'User-Agent': user_agent}
+    # html = requests.get(url, headers=headers)
+    # html.encoding ='utf-8'
  
-    soup = BeautifulSoup(html.text, 'html.parser')
-    soup.encoding = 'utf-8'
+    # soup = BeautifulSoup(html.text, 'html.parser')
+    # soup.encoding = 'utf-8'
  
     # pp = soup.find_all('a',class_='etw-on')
  
